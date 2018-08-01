@@ -24,12 +24,14 @@ class SortTable extends React.Component {
       return data.sort((a, b) => {
         let x = a[sortColumn];
         let y = b[sortColumn];
-        if (typeof x === 'string') {
-          x = x.charCodeAt();
-        }
-        if (typeof y === 'string') {
-          y = y.charCodeAt();
-        }
+        /**
+        * 判断值的类型
+        */
+        if(!isNaN(x - 0) && !isNaN(y - 0)){
+	        	x = x - 0;
+	        	y = y = 0;
+	        }
+       
         if (sortType === 'asc') {
           return x - y;
         } else {
